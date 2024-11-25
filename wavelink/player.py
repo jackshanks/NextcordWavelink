@@ -31,11 +31,11 @@ import time
 from typing import TYPE_CHECKING, Any, TypeAlias
 
 import async_timeout
-import discord
-from discord.abc import Connectable
-from discord.utils import MISSING
+import nextcord as discord
+from nextcord.abc import Connectable
+from nextcord.utils import MISSING
 
-import wavelink
+import nextcordwavelink
 
 from .enums import AutoPlayMode, NodeStatus, QueueMode
 from .exceptions import (
@@ -60,8 +60,8 @@ from .tracks import Playable, Playlist
 if TYPE_CHECKING:
     from collections import deque
 
-    from discord.abc import Connectable
-    from discord.types.voice import (
+    from nextcord.abc import Connectable
+    from nextcord.types.voice import (
         GuildVoiceState as GuildVoiceStatePayload,
         VoiceServerUpdate as VoiceServerUpdatePayload,
     )
