@@ -30,7 +30,7 @@ import urllib.parse
 from typing import TYPE_CHECKING, Any, ClassVar, Literal, TypeAlias
 
 import aiohttp
-from discord.utils import classproperty
+from nextcord.utils import classproperty
 
 from . import __version__
 from .enums import NodeStatus
