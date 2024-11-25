@@ -22,8 +22,8 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 """
 
-__title__ = "WaveLink"
-__author__ = "PythonistaGuild, EvieePy"
+__title__ = "NextcordWaveLink"
+__author__ = "High"
 __license__ = "MIT"
 __copyright__ = "Copyright 2019-Present (c) PythonistaGuild, EvieePy"
 __version__ = "3.5.0"
