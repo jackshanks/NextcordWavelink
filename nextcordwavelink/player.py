@@ -479,12 +479,12 @@ class Player(discord.VoiceProtocol):
 
             Caution should be used when using this method. If this method fails, your player might be left in a stale
             state. Consider handling cases where the player is unable to connect to the new node. To avoid stale state
-            in both wavelink and discord.py, it is recommended to disconnect the player when a RuntimeError occurs.
+            in both nextcordwavelink and discord.py, it is recommended to disconnect the player when a RuntimeError occurs.
 
         Parameters
         ----------
         new_node: :class:`wavelink.Node`
-            A positional only argument of a :class:`wavelink.Node`, which is the new node the player will attempt to
+            A positional only argument of a :class:`nextcordwavelink.Node`, which is the new node the player will attempt to
             switch to. This must not be the same as the current node.
 
         Raises
@@ -550,9 +550,9 @@ class Player(discord.VoiceProtocol):
         If this check successfully fires the :func:`on_wavelink_inactive_player` event, it will cancel any waiting
         :attr:`inactive_timeout` checks until a new track is played.
 
-        The default for every player can be set on :class:`~wavelink.Node`.
+        The default for every player can be set on :class:`~nextcordwavelink.Node`.
 
-        - See: :class:`~wavelink.Node`
+        - See: :class:`~nextcordwavelink.Node`
         - See: :func:`on_wavelink_inactive_player`
 
         .. warning::
@@ -584,7 +584,7 @@ class Player(discord.VoiceProtocol):
         - Pausing the player while a song is playing will not activate this countdown.
         - The countdown starts when a track ends and cancels when a track starts.
         - The countdown will not trigger until a song is played for the first time or this property is reset.
-        - The default countdown for all players is set on :class:`~wavelink.Node`.
+        - The default countdown for all players is set on :class:`~nextcordwavelink.Node`.
 
         This property can be set with a valid ``int`` of seconds to wait before dispatching the
         :func:`on_wavelink_inactive_player` event or ``None`` to remove the timeout.
@@ -597,7 +597,7 @@ class Player(discord.VoiceProtocol):
 
         When this property is set, the timeout will reset, and all previously waiting countdowns are cancelled.
 
-        - See: :class:`~wavelink.Node`
+        - See: :class:`~nextcordwavelink.Node`
         - See: :func:`on_wavelink_inactive_player`
 
 
@@ -623,21 +623,21 @@ class Player(discord.VoiceProtocol):
 
     @property
     def autoplay(self) -> AutoPlayMode:
-        """A property which returns the :class:`wavelink.AutoPlayMode` the player is currently in.
+        """A property which returns the :class:`nextcordwavelink.AutoPlayMode` the player is currently in.
 
-        This property can be set with any :class:`wavelink.AutoPlayMode` enum value.
+        This property can be set with any :class:`nextcordwavelink.AutoPlayMode` enum value.
 
 
         .. versionchanged:: 3.0.0
 
-            This property now accepts and returns a :class:`wavelink.AutoPlayMode` enum value.
+            This property now accepts and returns a :class:`nextcordwavelink.AutoPlayMode` enum value.
         """
         return self._autoplay
 
     @autoplay.setter
     def autoplay(self, value: Any) -> None:
         if not isinstance(value, AutoPlayMode):
-            raise ValueError("Please provide a valid 'wavelink.AutoPlayMode' to set.")
+            raise ValueError("Please provide a valid 'nextcordwavelink.AutoPlayMode' to set.")
 
         self._autoplay = value
 
@@ -672,7 +672,7 @@ class Player(discord.VoiceProtocol):
 
     @property
     def current(self) -> Playable | None:
-        """Returns the currently playing :class:`~wavelink.Playable` or None if no track is playing."""
+        """Returns the currently playing :class:`~nextcordwavelink.Playable` or None if no track is playing."""
         return self._current
 
     @property
@@ -685,9 +685,9 @@ class Player(discord.VoiceProtocol):
 
     @property
     def filters(self) -> Filters:
-        """Property which returns the :class:`~wavelink.Filters` currently assigned to the Player.
+        """Property which returns the :class:`~nextcordwavelink.Filters` currently assigned to the Player.
 
-        See: :meth:`~wavelink.Player.set_filters` for setting the players filters.
+        See: :meth:`~nextcordwavelink.Player.set_filters` for setting the players filters.
 
         .. versionchanged:: 3.0.0
 
@@ -728,11 +728,11 @@ class Player(discord.VoiceProtocol):
 
     @property
     def position(self) -> int:
-        """Returns the position of the currently playing :class:`~wavelink.Playable` in milliseconds.
+        """Returns the position of the currently playing :class:`~nextcordwavelink.Playable` in milliseconds.
 
         This property relies on information updates from Lavalink.
 
-        In cases there is no :class:`~wavelink.Playable` loaded or the player is not connected,
+        In cases there is no :class:`~nextcordwavelink.Playable` loaded or the player is not connected,
         this property will return ``0``.
 
         This property will return ``0`` if no update has been received from Lavalink.
@@ -814,7 +814,7 @@ class Player(discord.VoiceProtocol):
             Do not use this method directly on the player. See: :meth:`discord.VoiceChannel.connect` for more details.
 
 
-        Pass the :class:`wavelink.Player` to ``cls=`` in :meth:`discord.VoiceChannel.connect`.
+        Pass the :class:`nextcordwavelink.Player` to ``cls=`` in :meth:`discord.VoiceChannel.connect`.
 
 
         Raises
@@ -918,7 +918,7 @@ class Player(discord.VoiceProtocol):
         populate: bool = False,
         max_populate: int = 5,
     ) -> Playable:
-        """Play the provided :class:`~wavelink.Playable`.
+        """Play the provided :class:`~nextcordwavelink.Playable`.
 
         Parameters
         ----------
@@ -943,11 +943,11 @@ class Player(discord.VoiceProtocol):
             of the player. Defaults to ``None``.
         add_history: Optional[bool]
             If this argument is set to ``True``, the :class:`~Player` will add this track into the
-            :class:`wavelink.Queue` history, if loading the track was successful. If ``False`` this track will not be
+            :class:`nextcordwavelink.Queue` history, if loading the track was successful. If ``False`` this track will not be
             added to your history. This does not directly affect the ``AutoPlay Queue`` but will alter how ``AutoPlay``
             recommends songs in the future. Defaults to ``True``.
-        filters: Optional[:class:`~wavelink.Filters`]
-            An Optional[:class:`~wavelink.Filters`] to apply when playing this track. Defaults to ``None``.
+        filters: Optional[:class:`~nextcordwavelink.Filters`]
+            An Optional[:class:`~nextcordwavelink.Filters`] to apply when playing this track. Defaults to ``None``.
             If this is ``None`` the currently set filters on the player will be applied.
         populate: bool
             Whether the player should find and fill AutoQueue with recommended tracks based on the track provided.
@@ -1083,11 +1083,11 @@ class Player(discord.VoiceProtocol):
         await self.node._update_player(self.guild.id, data=request)
 
     async def set_filters(self, filters: Filters | None = None, /, *, seek: bool = False) -> None:
-        """Set the :class:`wavelink.Filters` on the player.
+        """Set the :class:`nextcordwavelink.Filters` on the player.
 
         Parameters
         ----------
-        filters: Optional[:class:`~wavelink.Filters`]
+        filters: Optional[:class:`~nextcordwavelink.Filters`]
             The filters to set on the player. Could be ``None`` to reset the currently applied filters.
             Defaults to ``None``.
         seek: bool
@@ -1098,7 +1098,7 @@ class Player(discord.VoiceProtocol):
         .. versionchanged:: 3.0.0
 
             This method now accepts a positional-only argument of filters, which now defaults to None. Filters
-            were redesigned in this version, see: :class:`wavelink.Filters`.
+            were redesigned in this version, see: :class:`nextcordwavelink.Filters`.
 
 
         .. versionchanged:: 3.0.0
@@ -1142,7 +1142,7 @@ class Player(discord.VoiceProtocol):
         self._volume = vol
 
     async def disconnect(self, **kwargs: Any) -> None:
-        """Disconnect the player from the current voice channel and remove it from the :class:`~wavelink.Node`.
+        """Disconnect the player from the current voice channel and remove it from the :class:`~nextcordwavelink.Node`.
 
         This method will cause any playing track to stop and potentially trigger the following events:
 
@@ -1177,7 +1177,7 @@ class Player(discord.VoiceProtocol):
         Parameters
         ----------
         force: bool
-            Whether the track should skip looping, if :class:`wavelink.Queue` has been set to loop.
+            Whether the track should skip looping, if :class:`nextcordwavelink.Queue` has been set to loop.
             Defaults to ``True``.
 
         Returns
@@ -1189,7 +1189,7 @@ class Player(discord.VoiceProtocol):
         .. versionchanged:: 3.0.0
 
             This method was previously known as ``stop``. To avoid confusion this method is now known as ``skip``.
-            This method now returns the :class:`~wavelink.Playable` that was skipped.
+            This method now returns the :class:`~nextcordwavelink.Playable` that was skipped.
         """
         assert self.guild is not None
         old: Playable | None = self._current

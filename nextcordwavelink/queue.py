@@ -39,12 +39,12 @@ __all__ = ("Queue",)
 
 
 class Queue:
-    """The default custom wavelink Queue designed specifically for :class:`wavelink.Player`.
+    """The default custom nextcordwavelink Queue designed specifically for :class:`nextcordwavelink.Player`.
 
     .. note::
 
-        :class:`~wavelink.Player` implements this queue by default.
-        You can access it via :attr:`wavelink.Player.queue`.
+        :class:`~nextcordwavelink.Player` implements this queue by default.
+        You can access it via :attr:`nextcordwavelink.Player.queue`.
 
     .. container:: operations
 
@@ -110,10 +110,10 @@ class Queue:
 
     @property
     def mode(self) -> QueueMode:
-        """Property which returns a :class:`~wavelink.QueueMode` indicating which mode the
-        :class:`~wavelink.Queue` is in.
+        """Property which returns a :class:`~nextcordwavelink.QueueMode` indicating which mode the
+        :class:`~nextcordwavelink.Queue` is in.
 
-        This property can be set with any :class:`~wavelink.QueueMode`.
+        This property can be set with any :class:`~nextcordwavelink.QueueMode`.
 
 
         .. versionadded:: 3.0.0
@@ -228,13 +228,13 @@ class Queue:
         .. warning::
 
             Due to the way the queue loop works, this method will return the same track if the queue is in loop mode.
-            You can use :meth:`wavelink.Player.skip` with ``force=True`` to skip the current track.
+            You can use :meth:`nextcordwavelink.Player.skip` with ``force=True`` to skip the current track.
 
             Do **NOT** use this method to remove tracks from the queue, use either:
 
             - ``del queue[index]``
-            - :meth:`wavelink.Queue.remove`
-            - :meth:`wavelink.Queue.delete`
+            - :meth:`nextcordwavelink.Queue.remove`
+            - :meth:`nextcordwavelink.Queue.delete`
 
 
         Returns
@@ -275,8 +275,8 @@ class Queue:
             Do **NOT** use this method to remove tracks from the queue, use either:
 
             - ``del queue[index]``
-            - :meth:`wavelink.Queue.remove`
-            - :meth:`wavelink.Queue.delete`
+            - :meth:`nextcordwavelink.Queue.remove`
+            - :meth:`nextcordwavelink.Queue.delete`
 
         Parameters
         ----------
@@ -324,7 +324,7 @@ class Queue:
         Raises
         ------
         TypeError
-            The track was not a :class:`wavelink.Playable`.
+            The track was not a :class:`nextcordwavelink.Playable`.
 
 
         .. versionadded:: 3.2.0
@@ -334,7 +334,7 @@ class Queue:
         self._wakeup_next()
 
     async def get_wait(self) -> Playable:
-        """This method returns the first :class:`wavelink.Playable` if one is present or
+        """This method returns the first :class:`nextcordwavelink.Playable` if one is present or
         waits indefinitely until one is.
 
         This method is asynchronous.
@@ -371,11 +371,11 @@ class Queue:
     def put(self, item: list[Playable] | Playable | Playlist, /, *, atomic: bool = True) -> int:
         """Put an item into the end of the queue.
 
-        Accepts a :class:`wavelink.Playable`, :class:`wavelink.Playlist` or list[:class:`wavelink.Playble`].
+        Accepts a :class:`nextcordwavelink.Playable`, :class:`nextcordwavelink.Playlist` or list[:class:`nextcordwavelink.Playble`].
 
         Parameters
         ----------
-        item: :class:`wavelink.Playable` | :class:`wavelink.Playlist` | list[:class:`wavelink.Playble`]
+        item: :class:`wavelink.Playable` | :class:`wavelink.Playlist` | list[:class:`nextcordwavelink.Playble`]
             The item to enter into the queue.
         atomic: bool
             Whether the items should be inserted atomically. If set to ``True`` this method won't enter any tracks if
@@ -416,7 +416,7 @@ class Queue:
     async def put_wait(self, item: list[Playable] | Playable | Playlist, /, *, atomic: bool = True) -> int:
         """Put an item or items into the end of the queue asynchronously.
 
-        Accepts a :class:`wavelink.Playable` or :class:`wavelink.Playlist` or list[:class:`wavelink.Playable`].
+        Accepts a :class:`nextcordwavelink.Playable` or :class:`nextcordwavelink.Playlist` or list[:class:`nextcordwavelink.Playable`].
 
         .. note::
 
@@ -555,7 +555,7 @@ class Queue:
         self[first], self[second] = self[second], self[first]
 
     def index(self, item: Playable, /) -> int:
-        """Return the index of the first occurence of a :class:`wavelink.Playable` in the queue.
+        """Return the index of the first occurence of a :class:`nextcordwavelink.Playable` in the queue.
 
         Parameters
         ----------
@@ -634,7 +634,7 @@ class Queue:
 
         .. note::
 
-            This will cancel any waiting futures on the queue. E.g. :meth:`wavelink.Queue.get_wait`.
+            This will cancel any waiting futures on the queue. E.g. :meth:`nextcordwavelink.Queue.get_wait`.
 
         Returns
         -------
@@ -698,13 +698,13 @@ class Queue:
 
     @property
     def loaded(self) -> Playable | None:
-        """The currently loaded track that will repeat when the queue is set to :attr:`wavelink.QueueMode.loop`.
+        """The currently loaded track that will repeat when the queue is set to :attr:`nextcordwavelink.QueueMode.loop`.
 
-        This track will be retrieved when using :meth:`wavelink.Queue.get` if the queue is in loop mode.
-        You can unload the track by setting this property to ``None`` or by using :meth:`wavelink.Player.skip` with
+        This track will be retrieved when using :meth:`nextcordwavelink.Queue.get` if the queue is in loop mode.
+        You can unload the track by setting this property to ``None`` or by using :meth:`nextcordwavelink.Player.skip` with
         ``force=True``.
 
-        Setting this property to a new :class:`wavelink.Playable` will replace the currently loaded track, but will not
+        Setting this property to a new :class:`nextcordwavelink.Playable` will replace the currently loaded track, but will not
         add it to the queue; or history until the track is played.
 
         Returns
@@ -715,7 +715,7 @@ class Queue:
         Raises
         ------
         TypeError
-            The track was not a :class:`wavelink.Playable` or ``None``.
+            The track was not a :class:`nextcordwavelink.Playable` or ``None``.
 
 
         .. versionadded:: 3.2.0

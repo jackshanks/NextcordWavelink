@@ -123,7 +123,7 @@ class Websocket:
                     raise NodeException from e
                 else:
                     logger.warning(
-                        'An unexpected error occurred while connecting %r to Lavalink: "%s"\nIf this error persists or wavelink is unable to reconnect, please see: %s',
+                        'An unexpected error occurred while connecting %r to Lavalink: "%s"\nIf this error persists or nextcordwavelink is unable to reconnect, please see: %s',
                         self.node,
                         e,
                         github,

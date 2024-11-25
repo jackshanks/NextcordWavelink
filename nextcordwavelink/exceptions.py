@@ -46,9 +46,9 @@ __all__ = (
 
 
 class WavelinkException(Exception):
-    """Base wavelink Exception class.
+    """Base nextcordwavelink Exception class.
 
-    All wavelink exceptions derive from this exception.
+    All nextcordwavelink exceptions derive from this exception.
     """
 
 
@@ -71,19 +71,19 @@ class NodeException(WavelinkException):
 
 class InvalidClientException(WavelinkException):
     """Exception raised when an invalid :class:`discord.Client`
-    is provided while connecting a :class:`wavelink.Node`.
+    is provided while connecting a :class:`nextcordwavelink.Node`.
     """
 
 
 class AuthorizationFailedException(WavelinkException):
-    """Exception raised when Lavalink fails to authenticate a :class:`~wavelink.Node`, with the provided password."""
+    """Exception raised when Lavalink fails to authenticate a :class:`~nextcordwavelink.Node`, with the provided password."""
 
 
 class InvalidNodeException(WavelinkException):
     """Exception raised when a :class:`Node` is tried to be retrieved from the
     :class:`Pool` without existing, or the ``Pool`` is empty.
 
-    This exception is also raised when providing an invalid node to :meth:`~wavelink.Player.switch_node`.
+    This exception is also raised when providing an invalid node to :meth:`~nextcordwavelink.Player.switch_node`.
     """
 
 
@@ -136,7 +136,7 @@ class LavalinkLoadException(WavelinkException):
 
 
 class InvalidChannelStateException(WavelinkException):
-    """Exception raised when a :class:`~wavelink.Player` tries to connect to an invalid channel or
+    """Exception raised when a :class:`~nextcordwavelink.Player` tries to connect to an invalid channel or
     has invalid permissions to use this channel.
     """
 

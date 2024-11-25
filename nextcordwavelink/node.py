@@ -87,7 +87,7 @@ class Node:
     """The Node represents a connection to Lavalink.
 
     The Node is responsible for keeping the websocket alive, resuming session, sending API requests and keeping track
-    of connected all :class:`~wavelink.Player`.
+    of connected all :class:`~nextcordwavelink.Player`.
 
     .. container:: operations
 
@@ -104,7 +104,7 @@ class Node:
     identifier: str | None
         A unique identifier for this Node. Could be ``None`` to generate a random one on creation.
     uri: str
-        The URL/URI that wavelink will use to connect to Lavalink. Usually this is in the form of something like:
+        The URL/URI that nextcordwavelink will use to connect to Lavalink. Usually this is in the form of something like:
         ``http://localhost:2333`` which includes the port. But you could also provide a domain which won't require a
         port like ``https://lavalink.example.com`` or a public IP address and port like ``http://111.333.444.55:2333``.
     password: str
@@ -119,15 +119,15 @@ class Node:
         the Node will be closed and cleaned-up. ``None`` will retry forever. Defaults to ``None``.
     client: :class:`discord.Client` | None
         The :class:`discord.Client` or subclasses, E.g. ``commands.Bot`` used to connect this Node. If this is *not*
-        passed you must pass this to :meth:`wavelink.Pool.connect`.
+        passed you must pass this to :meth:`nextcordwavelink.Pool.connect`.
     resume_timeout: Optional[int]
         The seconds this Node should configure Lavalink for resuming its current session in case of network issues.
         If this is ``0`` or below, resuming will be disabled. Defaults to ``60``.
     inactive_player_timeout: int | None
-        Set the default for :attr:`wavelink.Player.inactive_timeout` on every player that connects to this node.
+        Set the default for :attr:`nextcordwavelink.Player.inactive_timeout` on every player that connects to this node.
         Defaults to ``300``.
     inactive_channel_tokens: int | None
-        Sets the default for :attr:`wavelink.Player.inactive_channel_tokens` on every player that connects to this node.
+        Sets the default for :attr:`nextcordwavelink.Player.inactive_channel_tokens` on every player that connects to this node.
         Defaults to ``3``.
 
         See also: :func:`on_wavelink_inactive_player`.
@@ -224,13 +224,13 @@ class Node:
     def status(self) -> NodeStatus:
         """The current :class:`Node` status.
 
-        Refer to: :class:`~wavelink.NodeStatus`
+        Refer to: :class:`~nextcordwavelink.NodeStatus`
         """
         return self._status
 
     @property
     def players(self) -> dict[int, Player]:
-        """A mapping of :attr:`discord.Guild.id` to :class:`~wavelink.Player`.
+        """A mapping of :attr:`discord.Guild.id` to :class:`~nextcordwavelink.Player`.
 
 
         .. versionchanged:: 3.1.1
@@ -351,7 +351,7 @@ class Node:
         .. warning::
 
             Usually you wouldn't use this method. Please use the built in methods of :class:`~Node`, :class:`~Pool`
-            and :class:`~wavelink.Player`, unless you need to send specific plugin data to Lavalink.
+            and :class:`~nextcordwavelink.Player`, unless you need to send specific plugin data to Lavalink.
 
             Using this method may have unwanted side effects on your players and/or nodes.
 
@@ -443,7 +443,7 @@ class Node:
 
         .. warning::
 
-            This payload is not the same as the :class:`wavelink.Player` class. This is the data received from
+            This payload is not the same as the :class:`nextcordwavelink.Player` class. This is the data received from
             Lavalink about the players.
 
 
@@ -490,8 +490,8 @@ class Node:
 
         .. warning::
 
-            This payload is not the same as the :class:`wavelink.Player` class. This is the data received from
-            Lavalink about the player. See: :meth:`~wavelink.Node.get_player`
+            This payload is not the same as the :class:`nextcordwavelink.Player` class. This is the data received from
+            Lavalink about the player. See: :meth:`~nextcordwavelink.Node.get_player`
 
 
         Parameters
@@ -719,26 +719,26 @@ class Node:
         return data
 
     def get_player(self, guild_id: int, /) -> Player | None:
-        """Return a :class:`~wavelink.Player` associated with the provided :attr:`discord.Guild.id`.
+        """Return a :class:`~nextcordwavelink.Player` associated with the provided :attr:`discord.Guild.id`.
 
         Parameters
         ----------
         guild_id: int
-            The :attr:`discord.Guild.id` to retrieve a :class:`~wavelink.Player` for.
+            The :attr:`discord.Guild.id` to retrieve a :class:`~nextcordwavelink.Player` for.
 
         Returns
         -------
-        Optional[:class:`~wavelink.Player`]
-            The Player associated with this guild ID. Could be None if no :class:`~wavelink.Player` exists
+        Optional[:class:`~nextcordwavelink.Player`]
+            The Player associated with this guild ID. Could be None if no :class:`~nextcordwavelink.Player` exists
             for this guild.
         """
         return self._players.get(guild_id, None)
 
 
 class Pool:
-    """The wavelink Pool represents a collection of :class:`~wavelink.Node` and helper methods for searching tracks.
+    """The nextcordwavelink Pool represents a collection of :class:`~nextcordwavelink.Node` and helper methods for searching tracks.
 
-    To connect a :class:`~wavelink.Node` please use this Pool.
+    To connect a :class:`~nextcordwavelink.Node` please use this Pool.
 
     .. note::
 
@@ -845,9 +845,9 @@ class Pool:
 
     @classmethod
     async def close(cls) -> None:
-        """Close and clean up all :class:`~wavelink.Node` on this Pool.
+        """Close and clean up all :class:`~nextcordwavelink.Node` on this Pool.
 
-        This calls :meth:`wavelink.Node.close` on each node.
+        This calls :meth:`nextcordwavelink.Node.close` on each node.
 
 
         .. versionadded:: 3.0.0
@@ -896,13 +896,13 @@ class Pool:
 
         nodes: list[Node] = [n for n in cls.__nodes.values() if n.status is NodeStatus.CONNECTED]
         if not nodes:
-            raise InvalidNodeException("No nodes are currently assigned to the wavelink.Pool in a CONNECTED state.")
+            raise InvalidNodeException("No nodes are currently assigned to the nextcordwavelink.Pool in a CONNECTED state.")
 
         return sorted(nodes, key=lambda n: n._total_player_count or len(n.players))[0]
 
     @classmethod
     async def fetch_tracks(cls, query: str, /, *, node: Node | None = None) -> list[Playable] | Playlist:
-        """Search for a list of :class:`~wavelink.Playable` or a :class:`~wavelink.Playlist`, with the given query.
+        """Search for a list of :class:`~nextcordwavelink.Playable` or a :class:`~nextcordwavelink.Playlist`, with the given query.
 
         Parameters
         ----------
@@ -910,13 +910,13 @@ class Pool:
             The query to search tracks for. If this is not a URL based search you should provide the appropriate search
             prefix, e.g. "ytsearch:Rick Roll"
         node: :class:`~wavelink.Node` | None
-            An optional :class:`~wavelink.Node` to use when fetching tracks. Defaults to ``None``, which selects the
-            most appropriate :class:`~wavelink.Node` automatically.
+            An optional :class:`~nextcordwavelink.Node` to use when fetching tracks. Defaults to ``None``, which selects the
+            most appropriate :class:`~nextcordwavelink.Node` automatically.
 
         Returns
         -------
         list[Playable] | Playlist
-            A list of :class:`~wavelink.Playable` or a :class:`~wavelink.Playlist`
+            A list of :class:`~nextcordwavelink.Playable` or a :class:`~nextcordwavelink.Playlist`
             based on your search ``query``. Could be an empty list, if no tracks were found.
 
         Raises
@@ -928,7 +928,7 @@ class Pool:
         .. versionchanged:: 3.0.0
 
             This method was previously known as both ``.get_tracks`` and ``.get_playlist``. This method now searches
-            for both :class:`~wavelink.Playable` and :class:`~wavelink.Playlist` and returns the appropriate type,
+            for both :class:`~nextcordwavelink.Playable` and :class:`~nextcordwavelink.Playlist` and returns the appropriate type,
             or an empty list if no results were found.
 
             This method no longer accepts the ``cls`` parameter.

@@ -59,19 +59,19 @@ For support using WaveLink, please join the official [Support Server](https://di
 
 
 ```sh
-py -3.10 -m pip install -U wavelink
+py -3.10 -m pip install -U nextcordwavelink
 ```
 
 **Linux**
 
 ```sh
-python3.10 -m pip install -U wavelink
+python3.10 -m pip install -U nextcordwavelink
 ```
 
 **Virtual Environments**
 
 ```sh
-pip install -U wavelink
+pip install -U nextcordwavelink
 ```
 
 

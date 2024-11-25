@@ -111,7 +111,7 @@ class TrackStartEventPayload:
     track: :class:`~wavelink.Playable`
         The track received from Lavalink regarding this event.
     original: :class:`~wavelink.Playable` | None
-        The original track associated this event. E.g. the track that was passed to :meth:`~wavelink.Player.play` or
+        The original track associated this event. E.g. the track that was passed to :meth:`~nextcordwavelink.Player.play` or
         inserted into the queue, with all your additional attributes assigned. Could be ``None``.
     """
 
@@ -136,7 +136,7 @@ class TrackEndEventPayload:
     reason: str
         The reason Lavalink ended this track.
     original: :class:`~wavelink.Playable` | None
-        The original track associated this event. E.g. the track that was passed to :meth:`~wavelink.Player.play` or
+        The original track associated this event. E.g. the track that was passed to :meth:`~nextcordwavelink.Player.play` or
         inserted into the queue, with all your additional attributes assigned. Could be ``None``.
     """
 
@@ -307,11 +307,11 @@ class StatsEventPayload:
     uptime: int
         The uptime of the node in milliseconds.
     memory: :class:`wavelink.StatsEventMemory`
-        See Also: :class:`wavelink.StatsEventMemory`
+        See Also: :class:`nextcordwavelink.StatsEventMemory`
     cpu: :class:`wavelink.StatsEventCPU`
-        See Also: :class:`wavelink.StatsEventCPU`
+        See Also: :class:`nextcordwavelink.StatsEventCPU`
     frames: :class:`wavelink.StatsEventFrames` | None
-        See Also: :class:`wavelink.StatsEventFrames`. This could be ``None``.
+        See Also: :class:`nextcordwavelink.StatsEventFrames`. This could be ``None``.
     """
 
     def __init__(self, data: StatsOP) -> None:
@@ -328,7 +328,7 @@ class StatsEventPayload:
 
 
 class StatsResponsePayload:
-    """Payload received when using :meth:`~wavelink.Node.fetch_stats`
+    """Payload received when using :meth:`~nextcordwavelink.Node.fetch_stats`
 
     Attributes
     ----------
@@ -339,11 +339,11 @@ class StatsResponsePayload:
     uptime: int
         The uptime of the node in milliseconds.
     memory: :class:`wavelink.StatsEventMemory`
-        See Also: :class:`wavelink.StatsEventMemory`
+        See Also: :class:`nextcordwavelink.StatsEventMemory`
     cpu: :class:`wavelink.StatsEventCPU`
-        See Also: :class:`wavelink.StatsEventCPU`
+        See Also: :class:`nextcordwavelink.StatsEventCPU`
     frames: :class:`wavelink.StatsEventFrames` | None
-        See Also: :class:`wavelink.StatsEventFrames`. This could be ``None``.
+        See Also: :class:`nextcordwavelink.StatsEventFrames`. This could be ``None``.
     """
 
     def __init__(self, data: StatsResponse) -> None:
@@ -360,8 +360,8 @@ class StatsResponsePayload:
 
 
 class PlayerStatePayload:
-    """Represents the PlayerState information received via :meth:`~wavelink.Node.fetch_player_info` or
-    :meth:`~wavelink.Node.fetch_players`
+    """Represents the PlayerState information received via :meth:`~nextcordwavelink.Node.fetch_player_info` or
+    :meth:`~nextcordwavelink.Node.fetch_players`
 
     Attributes
     ----------
@@ -383,8 +383,8 @@ class PlayerStatePayload:
 
 
 class VoiceStatePayload:
-    """Represents the VoiceState information received via :meth:`~wavelink.Node.fetch_player_info` or
-    :meth:`~wavelink.Node.fetch_players`. This is the voice state information received via Discord and sent to your
+    """Represents the VoiceState information received via :meth:`~nextcordwavelink.Node.fetch_player_info` or
+    :meth:`~nextcordwavelink.Node.fetch_players`. This is the voice state information received via Discord and sent to your
     Lavalink node.
 
     Attributes
@@ -404,7 +404,7 @@ class VoiceStatePayload:
 
 
 class PlayerResponsePayload:
-    """Payload received when using :meth:`~wavelink.Node.fetch_player_info` or :meth:`~wavelink.Node.fetch_players`
+    """Payload received when using :meth:`~nextcordwavelink.Node.fetch_player_info` or :meth:`~nextcordwavelink.Node.fetch_players`
 
     Attributes
     ----------
@@ -417,11 +417,11 @@ class PlayerResponsePayload:
     paused: bool
         A bool indicating whether the player is paused.
     state: :class:`wavelink.PlayerStatePayload`
-        The current state of the player. See: :class:`wavelink.PlayerStatePayload`.
+        The current state of the player. See: :class:`nextcordwavelink.PlayerStatePayload`.
     voice_state: :class:`wavelink.VoiceStatePayload`
-        The voice state infomration received via Discord and sent to Lavalink. See: :class:`wavelink.VoiceStatePayload`.
+        The voice state infomration received via Discord and sent to Lavalink. See: :class:`nextcordwavelink.VoiceStatePayload`.
     filters: :class:`wavelink.Filters`
-        The :class:`wavelink.Filters` currently associated with this player.
+        The :class:`nextcordwavelink.Filters` currently associated with this player.
     """
 
     def __init__(self, data: PlayerResponse) -> None:
@@ -439,7 +439,7 @@ class PlayerResponsePayload:
 
 
 class GitResponsePayload:
-    """Represents Git information received via :meth:`wavelink.Node.fetch_info`
+    """Represents Git information received via :meth:`nextcordwavelink.Node.fetch_info`
 
     Attributes
     ----------
@@ -460,7 +460,7 @@ class GitResponsePayload:
 
 
 class VersionResponsePayload:
-    """Represents Version information received via :meth:`wavelink.Node.fetch_info`
+    """Represents Version information received via :meth:`nextcordwavelink.Node.fetch_info`
 
     Attributes
     ----------
@@ -488,7 +488,7 @@ class VersionResponsePayload:
 
 
 class PluginResponsePayload:
-    """Represents Plugin information received via :meth:`wavelink.Node.fetch_info`
+    """Represents Plugin information received via :meth:`nextcordwavelink.Node.fetch_info`
 
     Attributes
     ----------
@@ -504,7 +504,7 @@ class PluginResponsePayload:
 
 
 class InfoResponsePayload:
-    """Payload received when using :meth:`~wavelink.Node.fetch_info`
+    """Payload received when using :meth:`~nextcordwavelink.Node.fetch_info`
 
     Attributes
     ----------

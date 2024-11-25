@@ -166,7 +166,7 @@ class Equalizer:
         and ``0.25`` means it will be doubled.
 
         Using this method changes **all** bands, resetting any bands not provided.
-        To change specific bands, consider accessing :attr:`~wavelink.Equalizer.payload` first.
+        To change specific bands, consider accessing :attr:`~nextcordwavelink.Equalizer.payload` first.
         """
         default: dict[int, EqualizerPayload] = {n: {"band": n, "gain": 0.0} for n in range(15)}
         payload: list[EqualizerPayload] | None = options.get("bands", None)
@@ -673,7 +673,7 @@ class PluginFilters(_BaseFilter[dict[str, Any]]):
 
 
 class Filters:
-    """The wavelink Filters class.
+    """The nextcordwavelink Filters class.
 
     This class contains the information associated with each of Lavalinks filter objects, as Python classes.
     Each filter can be ``set`` or ``reset`` individually.
@@ -682,12 +682,12 @@ class Filters:
     Using ``reset`` on an individual filter, resets it's payload, and can be used before ``set`` when you want a clean
     state for that filter.
 
-    See: :meth:`~wavelink.Filters.reset` to reset **every** individual filter.
+    See: :meth:`~nextcordwavelink.Filters.reset` to reset **every** individual filter.
 
-    This class is already applied an instantiated on all new :class:`~wavelink.Player`.
+    This class is already applied an instantiated on all new :class:`~nextcordwavelink.Player`.
 
-    See: :meth:`~wavelink.Player.set_filters` for information on applying this class to your :class:`~wavelink.Player`.
-    See: :attr:`~wavelink.Player.filters` for retrieving the applied filters.
+    See: :meth:`~nextcordwavelink.Player.set_filters` for information on applying this class to your :class:`~nextcordwavelink.Player`.
+    See: :attr:`~nextcordwavelink.Player.filters` for retrieving the applied filters.
 
     To retrieve the ``payload`` for this Filters class, you can call an instance of this class.
 
@@ -696,22 +696,22 @@ class Filters:
 
     .. code:: python3
 
-        import wavelink
+        import nextcordwavelink
 
         # Create a brand new Filters and apply it...
         # You can use player.set_filters() for an easier way to reset.
-        filters: wavelink.Filters = wavelink.Filters()
+        filters: nextcordwavelink.Filters = nextcordwavelink.Filters()
         await player.set_filters(filters)
 
 
         # Retrieve the payload of any Filters instance...
-        filters: wavelink.Filters = player.filters
+        filters: nextcordwavelink.Filters = player.filters
         print(filters())
 
 
         # Set some filters...
         # You can set and reset individual filters at the same time...
-        filters: wavelink.Filters = player.filters
+        filters: nextcordwavelink.Filters = player.filters
         filters.timescale.set(pitch=1.2, speed=1.1, rate=1)
         filters.rotation.set(rotation_hz=0.2)
         filters.equalizer.reset()
@@ -720,14 +720,14 @@ class Filters:
 
 
         # Reset a filter...
-        filters: wavelink.Filters = player.filters
+        filters: nextcordwavelink.Filters = player.filters
         filters.timescale.reset()
 
         await player.set_filters(filters)
 
 
         # Reset all filters...
-        filters: wavelink.Filters = player.filters
+        filters: nextcordwavelink.Filters = player.filters
         filters.reset()
 
         await player.set_filters(filters)
@@ -781,7 +781,7 @@ class Filters:
 
     def set_filters(self, **filters: Unpack[FiltersOptions]) -> None:
         """Set multiple filters at once to a standalone Filter object.
-        To set the filters to the player directly see :meth:`wavelink.Player.set_filters`
+        To set the filters to the player directly see :meth:`nextcordwavelink.Player.set_filters`
 
         Parameters
         ----------
@@ -806,7 +806,7 @@ class Filters:
         low_pass: :class:`wavelink.LowPass`
             The LowPass filter to apply to the player.
         plugin_filters: :class:`wavelink.PluginFilters`
-            The extra Plugin Filters to apply to the player. See :class:`~wavelink.PluginFilters` for more details.
+            The extra Plugin Filters to apply to the player. See :class:`~nextcordwavelink.PluginFilters` for more details.
         reset: bool
             Whether to reset all filters that were not specified.
         """
@@ -844,7 +844,7 @@ class Filters:
     def reset(self) -> None:
         """Method which resets this object to an original state.
 
-        This method will clear all individual filters, and assign the wavelink default classes.
+        This method will clear all individual filters, and assign the nextcordwavelink default classes.
         """
         self._reset()
 
@@ -875,7 +875,7 @@ class Filters:
         low_pass: :class:`wavelink.LowPass`
             The LowPass filter to apply to the player.
         plugin_filters: :class:`wavelink.PluginFilters`
-            The extra Plugin Filters to apply to the player. See :class:`~wavelink.PluginFilters` for more details.
+            The extra Plugin Filters to apply to the player. See :class:`~nextcordwavelink.PluginFilters` for more details.
         reset: bool
             Whether to reset all filters that were not specified.
         """
@@ -899,52 +899,52 @@ class Filters:
 
     @property
     def equalizer(self) -> Equalizer:
-        """Property which returns the :class:`~wavelink.Equalizer` filter associated with this Filters payload."""
+        """Property which returns the :class:`~nextcordwavelink.Equalizer` filter associated with this Filters payload."""
         return self._equalizer
 
     @property
     def karaoke(self) -> Karaoke:
-        """Property which returns the :class:`~wavelink.Karaoke` filter associated with this Filters payload."""
+        """Property which returns the :class:`~nextcordwavelink.Karaoke` filter associated with this Filters payload."""
         return self._karaoke
 
     @property
     def timescale(self) -> Timescale:
-        """Property which returns the :class:`~wavelink.Timescale` filter associated with this Filters payload."""
+        """Property which returns the :class:`~nextcordwavelink.Timescale` filter associated with this Filters payload."""
         return self._timescale
 
     @property
     def tremolo(self) -> Tremolo:
-        """Property which returns the :class:`~wavelink.Tremolo` filter associated with this Filters payload."""
+        """Property which returns the :class:`~nextcordwavelink.Tremolo` filter associated with this Filters payload."""
         return self._tremolo
 
     @property
     def vibrato(self) -> Vibrato:
-        """Property which returns the :class:`~wavelink.Vibrato` filter associated with this Filters payload."""
+        """Property which returns the :class:`~nextcordwavelink.Vibrato` filter associated with this Filters payload."""
         return self._vibrato
 
     @property
     def rotation(self) -> Rotation:
-        """Property which returns the :class:`~wavelink.Rotation` filter associated with this Filters payload."""
+        """Property which returns the :class:`~nextcordwavelink.Rotation` filter associated with this Filters payload."""
         return self._rotation
 
     @property
     def distortion(self) -> Distortion:
-        """Property which returns the :class:`~wavelink.Distortion` filter associated with this Filters payload."""
+        """Property which returns the :class:`~nextcordwavelink.Distortion` filter associated with this Filters payload."""
         return self._distortion
 
     @property
     def channel_mix(self) -> ChannelMix:
-        """Property which returns the :class:`~wavelink.ChannelMix` filter associated with this Filters payload."""
+        """Property which returns the :class:`~nextcordwavelink.ChannelMix` filter associated with this Filters payload."""
         return self._channel_mix
 
     @property
     def low_pass(self) -> LowPass:
-        """Property which returns the :class:`~wavelink.LowPass` filter associated with this Filters payload."""
+        """Property which returns the :class:`~nextcordwavelink.LowPass` filter associated with this Filters payload."""
         return self._low_pass
 
     @property
     def plugin_filters(self) -> PluginFilters:
-        """Property which returns the :class:`~wavelink.PluginFilters` filters associated with this Filters payload."""
+        """Property which returns the :class:`~nextcordwavelink.PluginFilters` filters associated with this Filters payload."""
         return self._plugin_filters
 
     def __call__(self) -> FilterPayload:

@@ -26,10 +26,10 @@ import asyncio
 import logging
 from typing import cast
 
-import discord
-from discord.ext import commands
+import nextcord as discord
+from nextcord.ext import commands
 
-import wavelink
+import nextcordwavelink as wavelink
 
 
 class Bot(commands.Bot):
