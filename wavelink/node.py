@@ -51,7 +51,7 @@ from .websocket import Websocket
 if TYPE_CHECKING:
     from collections.abc import Iterable
 
-    import discord
+    import wavelink
 
     from .player import Player
     from .types.request import Request, UpdateSessionRequest
