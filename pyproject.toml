@@ -31,7 +31,7 @@ classifiers = [
 "Homepage" = "https://github.com/PythonistaGuild/Wavelink"
 
 [tool.setuptools]
-packages = ["wavelink", "wavelink.types"]
+packages = ["nextcordwavelink", "nextcordwavelink.types"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
