@@ -28,7 +28,7 @@ from typing import TYPE_CHECKING, Any, TypeAlias, overload
 
 import yarl
 
-import wavelink
+import nextcordwavelink as wavelink
 
 from .enums import TrackSource
 from .utils import ExtrasNamespace
