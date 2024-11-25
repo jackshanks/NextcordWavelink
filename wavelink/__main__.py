@@ -3,7 +3,7 @@ import platform
 import subprocess
 import sys
 
-import wavelink
+import nextcordwavelink
 
 
 parser = argparse.ArgumentParser(prog="wavelink")
