@@ -27,7 +27,7 @@ from __future__ import annotations
 import datetime
 from typing import TYPE_CHECKING, cast
 
-import nextcordwavelink
+import nextcordwavelink as wavelink
 
 from .enums import DiscordVoiceCloseType
 from .filters import Filters
